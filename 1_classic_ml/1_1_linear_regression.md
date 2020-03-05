@@ -29,9 +29,10 @@ $$
 Linear regression approximation:
 $$\overline{y} = h_\theta(X) = \theta^T*X$$
 
-Loss function - Euclidian distance
+Cost function - Euclidian distance
 $$
 J(\theta) = \dfrac{1}{2m}\sum_{i=1}^m(h_\theta(X)-y)^2
 $$
 
-$$\theta = \int_{i=1}^{10} t_i$$
+Gradient desent (simultaneously for every i)
+$$\theta_i = \theta_i - \dfrac{\partial}{\partial \theta_i}J(\theta)  $$
