@@ -1,9 +1,9 @@
-# Linear regression
+# Logistic regression
 
 
 Problem definition
 
-Regression
+Classification
 
 **m** examples, **n** features
 
@@ -26,18 +26,27 @@ $$y = [\begin{matrix}
 y^1\\
 ..\\
 y^m
-\end{matrix}] - target
+\end{matrix}] ,\space
+y^i \in \{0,1\} - target
 $$
-Linear regression hypothesis representation:
-$$\overline{y} = h_\theta(X) = \theta^T\times{X}$$
+Logistic regression hypothesis representation:
+$$\overline{y} = h_\theta(X) = g(\theta^TX) $$
 
-Cost function - Euclidian distance
+$$g(z)=\dfrac{1}{1+e^{-z}}- sigmoid\space function$$
+
+Interpretation of hypothesis output
+ $$h_\theta(x) = p(y=1|x;\theta)$$
+
+Cost function
 $$
-J(\theta) = \dfrac{1}{2m}\sum_{i=1}^m(h_\theta(x^i)-y^i)^2
+J(\theta) = -\dfrac{1}{m}\sum_{i=1}^m[y^i\log{h_\theta(x^i)}+(1-y^i)\log{(1-h_\theta(x^i))}]
 $$
 
 Gradient desent (simultaneously for every i)
 $$\theta_j = \theta_j - \alpha\dfrac{\partial J(\theta)}{\partial \theta_j}$$
+
+$$\dfrac{\partial J(\theta)}{\partial \theta_j} = - \dfrac{1}{m}\sum_{i=1}^m{[y^i]}$$
+
 $$ \dfrac{\partial J(\theta)}{\partial \theta_j} =  \dfrac{2}{2m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)\times{\dfrac{\partial}{\partial \theta_j}(h_\theta(x^i)-y^i)}} =
 \dfrac{1}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)\times{x_j^i}}$$
 $$\theta_j =  \theta_j - \dfrac{\alpha}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)\times{x_j^i}}$$
