@@ -27,12 +27,31 @@ y^m
 \end{matrix}] - target
 $$
 Linear regression approximation:
-$$\overline{y} = h_\theta(X) = \theta^T*X$$
+$$\overline{y} = h_\theta(X) = \theta^T\times{X}$$
 
 Cost function - Euclidian distance
 $$
-J(\theta) = \dfrac{1}{2m}\sum_{i=1}^m(h_\theta(X)-y)^2
+J(\theta) = \dfrac{1}{2m}\sum_{i=1}^m(h_\theta(x^i)-y^i)^2
 $$
 
 Gradient desent (simultaneously for every i)
-$$\theta_i = \theta_i - \dfrac{\partial}{\partial \theta_i}J(\theta)  $$
+$$\theta_j = \theta_j - \alpha\dfrac{\partial J(\theta)}{\partial \theta_j}$$
+$$ \dfrac{\partial J(\theta)}{\partial \theta_j} =  \dfrac{2}{2m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)\times{\dfrac{\partial}{\partial \theta_j}(h_\theta(x^i)-y^i)}} =
+\dfrac{1}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)\times{x_j^i}}$$
+$$\theta_j =  \theta_j - \dfrac{\alpha}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)\times{x_j^i}}$$
+
+Regularization term
+
+$$
+J(\theta) = \dfrac{1}{2m}[\sum_{i=1}^m(h_\theta(x^i)-y^i)^2 + \lambda\sum_{j=1}^n\theta_j^2]
+$$
+
+$$\theta_j =  \theta_j(1-\alpha\dfrac{\lambda}{m}) - \alpha\dfrac{1}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i){x_j^i}}$$
+
+Bonus - normal equation
+
+$$J(\theta) = \dfrac{1}{2m}\sum_{i=1}^m(h_\theta(x^i)-y^i)^2 = (X\theta -y)^T(X\theta -y)$$
+$$\dfrac{\partial J(\theta)}{\partial \theta}=\dfrac{1}{m}(X^TX\theta-X^Ty)=0$$
+
+
+$$\theta = (X^TX)^{-1}X^Ty$$
