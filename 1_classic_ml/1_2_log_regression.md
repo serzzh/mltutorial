@@ -42,27 +42,34 @@ $$
 J(\theta) = -\dfrac{1}{m}\sum_{i=1}^m[y^i\log{h_\theta(x^i)}+(1-y^i)\log{(1-h_\theta(x^i))}]
 $$
 
-Gradient desent (simultaneously for every i)
+Gradient Descent (simultaneously for every i)
 $$\theta_j = \theta_j - \alpha\dfrac{\partial J(\theta)}{\partial \theta_j}$$
 
-$$\dfrac{\partial J(\theta)}{\partial \theta_j} = - \dfrac{1}{m}\sum_{i=1}^m{[y^i]}$$
 
-$$ \dfrac{\partial J(\theta)}{\partial \theta_j} =  \dfrac{2}{2m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)\times{\dfrac{\partial}{\partial \theta_j}(h_\theta(x^i)-y^i)}} =
-\dfrac{1}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)\times{x_j^i}}$$
-$$\theta_j =  \theta_j - \dfrac{\alpha}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)\times{x_j^i}}$$
+$$\theta_j =  \theta_j - \dfrac{\alpha}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)x_j^i}$$
 
 Regularization term
 
 $$
-J(\theta) = \dfrac{1}{2m}[\sum_{i=1}^m(h_\theta(x^i)-y^i)^2 + \lambda\sum_{j=1}^n\theta_j^2]
+J(\theta) = -\dfrac{1}{m}\sum_{i=1}^m[y^i\log{h_\theta(x^i)}+(1-y^i)\log{(1-h_\theta(x^i))}] + \dfrac{\lambda}{2}\sum_{j=1}^n\theta_j^2
 $$
 
 $$\theta_j =  \theta_j(1-\alpha\dfrac{\lambda}{m}) - \alpha\dfrac{1}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i){x_j^i}}$$
 
-Bonus - normal equation
+Bonus - Gradient Descent derivation
 
-$$J(\theta) = \dfrac{1}{2m}\sum_{i=1}^m(h_\theta(x^i)-y^i)^2 = (X\theta -y)^T(X\theta -y)$$
-$$\dfrac{\partial J(\theta)}{\partial \theta}=\dfrac{1}{m}(X^TX\theta-X^Ty)=0$$
+$$
+J(\theta) = -\dfrac{1}{m}\sum_{i=1}^m[y^i\log{h_\theta(x^i)}+(1-y^i)\log{(1-h_\theta(x^i))}]
+$$
+$$h_\theta(x)=\dfrac{1}{1+e^{-\theta^T x}}$$
+$$
+J(\theta) =\dfrac{1}{m}\sum_{i=1}^m[y^i\log{(1+e^{-\theta^T x^i})}+(1-y^i)(\theta^T x^i+\log{(1+e^{-\theta^T x^i}))}]
+$$
 
+$$
+J(\theta) =\dfrac{1}{m}\sum_{i=1}^m[(1-y^i)\theta^T x^i+\log{(1+e^{-\theta^T x^i})}]
+$$
 
-$$\theta = (X^TX)^{-1}X^Ty$$
+$$ \dfrac{\partial J(\theta)}{\partial \theta_j} =  \dfrac{1}{m}\sum_{i=1}^m{(1-y^i-\dfrac{e^{-\theta^T x^i_j}}{1+e^{-\theta^T x^i_j}})x^i_j} =
+\dfrac{1}{m}\sum_{i=1}^m{(h_\theta(x^i_j)-y^i)x_j^i}$$
+$$\theta_j =  \theta_j - \dfrac{\alpha}{m}\sum_{i=1}^m{(h_\theta(x^i)-y^i)x_j^i}$$
