@@ -30,9 +30,7 @@ y^m
 y^i \in \{0,1\} - target
 $$
 Logistic regression hypothesis representation:
-$$\overline{y} = h_\theta(X) = g(\theta^TX) $$
-
-$$g(z)=\dfrac{1}{1+e^{-z}}- sigmoid\space function$$
+$$\overline{y} = h_\theta(X) =\dfrac{1}{1+e^{-\theta^TX}}- sigmoid\space function$$
 
 Interpretation of hypothesis output
  $$h_\theta(x) = p(y=1|x;\theta)$$
@@ -61,7 +59,7 @@ Bonus - Gradient Descent derivation
 $$
 J(\theta) = -\dfrac{1}{m}\sum_{i=1}^m[y^i\log{h_\theta(x^i)}+(1-y^i)\log{(1-h_\theta(x^i))}]
 $$
-$$h_\theta(x)=\dfrac{1}{1+e^{-\theta^T x}}$$
+$$h_\theta(X)=\dfrac{1}{1+e^{-\theta^T X}}$$
 $$
 J(\theta) =\dfrac{1}{m}\sum_{i=1}^m[y^i\log{(1+e^{-\theta^T x^i})}+(1-y^i)(\theta^T x^i+\log{(1+e^{-\theta^T x^i}))}]
 $$
